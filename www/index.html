@@ -21,7 +21,7 @@
             function capturePhoto(){
                 navigator.camera.direction(1);
                 
-                navigator.camera.getPicture(uploadPhoto,null,{quality: 40,
+                navigator.camera.getPicture(uploadPhoto,{quality: 40,
                 sourceType : Camera.PictureSourceType.CAMERA,
                 allowEdit : true,
                 encodingType: Camera.EncodingType.JPEG,
