@@ -11,24 +11,27 @@
     <body>
        
         <div id="camera">
+            <form name="camera_pic">
+            
             <button class="camera-control" onclick="capturePhoto();">Capture Photo</button>
             <div style="text-align:center;margin:20px;">
                 <img id="cameraPic" src="" style="width:auto;height:120px;"/>
             </div>
+            <button class="login-facebook" onclick="login();">Login Facebook</button>
+            </form>
         </div>
         
         <script>
             function capturePhoto(){
                
-              navigator.camera.getPicture(uploadPhoto,null,{sourceType:1,quality:40,cameraDirection:1});
+              navigator.camera.getPicture(uploadPhoto,null,{
+                  sourceType:1,
+                  quality:40,
+                  cameraDirection:1,
+                  destinationType:destinationType.DATA_URI,
+                  saveToPhotoAlbum:true});
                 
-                /*navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 40,
-                sourceType : Camera.PictureSourceType.CAMERA,
-                allowEdit : true,
-                encodingType: Camera.EncodingType.JPEG,
-                targetWidth: 100,
-                targetHeight: 100,
-                saveToPhotoAlbum: false  });*/
+                
                       }
                 
 
@@ -38,10 +41,34 @@
             // this is where you would send the image file to server
                 cameraPic.src = "data:image/jpeg;base64," + data;
                 // Successful upload to the server
+                /*var options = new FileUploadOptions();
+                options.fileKey="camera_pic";
+                options.fileName=data.substr(data.lastIndexOf('/')+1)+'.png';
+                options.mimeType="text/plain";
+
+                var params = new Object();
+
+                options.params = params;
+
+                var ft = new FileTransfer();
+                ft.upload(data, encodeURI("http://jklabz.com/"), win, fail, options);
+                
+                function win(r) {
+                    console.log("Code = " + r.responseCode);
+                    console.log("Response = " + r.response);
+                    console.log("Sent = " + r.bytesSent);
+                }
+
+                function fail(error) {
+                    alert("An error has occurred: Code = " + error.code);
+                    console.log("upload error source " + error.source);
+                    console.log("upload error target " + error.target);
+                }*/
+                
                 navigator.notification.alert(
-                    'Your Photo has been uploaded',  // message
+                    'Your Photo has been saved',  // message
                     okay,                           // callback
-                    'Photo Uploaded',              // title
+                    'Photo Saved',              // title
                     'OK'                          // buttonName
                 );
                 // upload has failed Fail
@@ -60,8 +87,46 @@
             function okay(){
                 // Do something
             }
+            
+            function logout() {
+                FB.logout(function(response) {
+                          alert('logged out');
+                          document.getElementById('data').innerHTML = JSON.stringify(response);
+                          });
+            }
+            
+            function login() {
+                FB.login(
+                     function(response) {
+                       if (response.session) {
+                         alert('logged in');
+                       } 
+                       else {
+                         alert('not logged in');
+                       }
+                       document.getElementById('data').innerHTML = JSON.stringify(response);
+                     }, { scope: "email" }
+                         );
+            }
+            
+            
+            
+            //Device Ready Event 
+            document.addEventListener('deviceready', function() {
+                                      try {
+                                      
+                                      FB.init({ appId: '470700906355954', nativeInterface: CDV.FB, useCachedDialogs: false });
+                                      
+                                      } catch (e) {
+                                      
+                                      }
+                                      }, false);
         </script>
         <script type="text/javascript" src="phonegap.js"></script>
+        <!-- cordova facebook plugin -->
+	<script src="cdv-plugin-fb-connect.js"></script>
+	<!-- facebook js sdk -->
+	<script src="facebook-js-sdk.js"></script>
         
     </body>
 </html>
