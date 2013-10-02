@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <title>Front Camera - Facebook</title>
+    </head>
+    <body>
+       
+        <div id="camera">
+            <button class="camera-control" onclick="capturePhoto();">Capture Photo</button>
+            <div style="text-align:center;margin:20px;">
+                <img id="cameraPic" src="" style="width:auto;height:120px;"/>
+            </div>
+        </div>
+        
+        <script>
+            function capturePhoto(){
+                navigator.camera.getPicture(uploadPhoto,null,{sourceType:1,quality:60});
+                navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
+                sourceType : Camera.PictureSourceType.CAMERA,
+                allowEdit : true,
+                encodingType: Camera.EncodingType.JPEG,
+                targetWidth: 100,
+                targetHeight: 100,
+                saveToPhotoAlbum: false  });
+                      }
+                navigator.camera.direction(1);
+
+            navigator.notification.alert(message, alertCallback, [title], [buttonName]);
+
+            function uploadPhoto(data){
+            // this is where you would send the image file to server
+                cameraPic.src = "data:image/jpeg;base64," + data;
+                // Successful upload to the server
+                navigator.notification.alert(
+                    'Your Photo has been uploaded',  // message
+                    okay,                           // callback
+                    'Photo Uploaded',              // title
+                    'OK'                          // buttonName
+                );
+                // upload has failed Fail
+                /*
+                if (failedToUpload){
+                navigator.notification.alert(
+                    'Your Photo has failed to upload',
+                    failedDismissed,
+                    'Photo Not Uploaded',
+                    'OK'
+                    );
+                }
+                */
+            }
+
+            function okay(){
+                // Do something
+            }
+        </script>
+        <script type="text/javascript" src="phonegap.js"></script>
+        
+    </body>
+</html>
