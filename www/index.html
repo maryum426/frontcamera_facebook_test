@@ -19,7 +19,7 @@
         
         <script>
             function capturePhoto(){
-                navigator.camera.direction(1);
+                
                 
                 navigator.camera.getPicture(uploadPhoto,{quality: 40,
                 sourceType : Camera.PictureSourceType.CAMERA,
@@ -27,6 +27,7 @@
                 encodingType: Camera.EncodingType.JPEG,
                 targetWidth: 100,
                 targetHeight: 100,
+                cameraDirection: 1,
                 saveToPhotoAlbum: false  });
                       }
                 
