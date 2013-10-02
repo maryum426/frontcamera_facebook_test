@@ -31,7 +31,7 @@ body{
   display: block;
   font: bold 16px "helvetica neue", helvetica, arial, sans-serif;
   margin-top: 50%;
-  margin-left:40%;
+  margin-left:30%;
   padding: 7px 0;
   text-shadow: 0 1px 1px black;
   width: 150px;
@@ -53,8 +53,8 @@ body{
   color: black;
   display: block;
   font: bold 16px "helvetica neue", helvetica, arial, sans-serif;
-  margin-top: 55%;
-  margin-left:40%;
+  margin-top: 5px;
+  margin-left:30%;
   padding: 7px 0;
   text-shadow: 0 1px 1px black;
   width: 150px;
