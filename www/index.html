@@ -19,9 +19,9 @@
         
         <script>
             function capturePhoto(){
-                navigator.camera.getPicture(uploadPhoto,null,{sourceType:1,quality:60});
                 navigator.camera.direction(1);
-                navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
+                
+                navigator.camera.getPicture(uploadPhoto,null,{quality: 40,
                 sourceType : Camera.PictureSourceType.CAMERA,
                 allowEdit : true,
                 encodingType: Camera.EncodingType.JPEG,
