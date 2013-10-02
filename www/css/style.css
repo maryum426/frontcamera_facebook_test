@@ -30,9 +30,9 @@ body{
   color: black;
   display: block;
   font: bold 16px "helvetica neue", helvetica, arial, sans-serif;
-  margin: 10px auto;
+  margin-top: 40%;
   padding: 7px 0;
   text-shadow: 0 1px 1px black;
   width: 150px;
-  vertical-align: middle;
+  
 }
