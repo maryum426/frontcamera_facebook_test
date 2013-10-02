@@ -7,6 +7,9 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/style.css" />
         <title>Front Camera - Facebook</title>
+        
+        <script type="text/javascript" src="phonegap.js"></script>
+        
     </head>
     <body>
        
@@ -20,8 +23,11 @@
             <button class="login-facebook" onclick="login();">Login Facebook</button>
             </form>
         </div>
-        
+        <div id="data">loading ...</div>
         <script>
+            
+            FB.init({ appId: '366407670138696', nativeInterface: CDV.FB, useCachedDialogs: false });
+            
             function capturePhoto(){
                
               navigator.camera.getPicture(uploadPhoto,null,{
@@ -88,45 +94,15 @@
                 // Do something
             }
             
-            function logout() {
-                FB.logout(function(response) {
-                          alert('logged out');
-                          document.getElementById('data').innerHTML = JSON.stringify(response);
-                          });
-            }
-            
-            function login() {
-                FB.login(
-                     function(response) {
-                       if (response.session) {
-                         alert('logged in');
-                       } 
-                       else {
-                         alert('not logged in');
-                       }
-                       document.getElementById('data').innerHTML = JSON.stringify(response);
-                     }, { scope: "email" }
-                         );
-            }
+           
             
             
             
-            //Device Ready Event 
-            document.addEventListener('deviceready', function() {
-                                      try {
+            
                                       
-                                      FB.init({ appId: '366407670138696', nativeInterface: CDV.FB, useCachedDialogs: false });
-                                      
-                                      } catch (e) {
-                                      
-                                      }
-                                      }, false);
+                                    
         </script>
-        <script type="text/javascript" src="phonegap.js"></script>
-        <!-- cordova facebook plugin -->
-	<script src="cdv-plugin-fb-connect.js"></script>
-	<!-- facebook js sdk -->
-	<script src="facebook-js-sdk.js"></script>
+        
         
     </body>
 </html>
